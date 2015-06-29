@@ -1,6 +1,8 @@
 <% @users.each do |user| %>
 	<%= user.user_name %>
+	<%= link_to 'Show Costs', user_path(user) %>
 <% end %>
+
 
 
 

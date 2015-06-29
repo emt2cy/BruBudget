@@ -1,0 +1,13 @@
+<%= form_for([@user, @user.costs.build]) do |f| %>
+  <p>
+    <%= f.label :iteam %><br>
+    <%= f.text_field :iteam %>
+  </p>
+  <p>
+    <%= f.label :cost %><br>
+    <%= f.text_area :cost %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
