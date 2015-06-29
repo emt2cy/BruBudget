@@ -1,15 +1,18 @@
 class CostsController < ApplicationController
 
 def index
-	@costs = Cost.all
+@user = current_user
+ @costs = @user.costs
 end
 
 def show
-	@cost = Cost.find(params[:id])
+	@user = current_user
+	@cost = @user.cost(params[:id])
 end
 
 def new
-	@cost = Cost.new
+	@user = current_user
+	@costs = current_user.costs.new
 end
 
 def create
@@ -17,25 +20,25 @@ def create
 	@cost = @user.costs.new(cost_params)
 
 	if @cost.save
-	redirect_to user_costs_path
+		redirect_to user_costs_path
 	else
 	render 'new'
 	end
 end
 
 def edit
-	@cost = Cost.find(params[:id])
+	@user = current_user
+	@cost = @user.cost.find(params[:id])
 end
 
 def update
 	@user = current_user
-	@cost = user.costs.update(user_params)
-
-	if @cost.update(user_params)
-		redirect_to @cost
-	else
-		render 'edit'
-	end
+	@cost = user.costs.find(params[:id])
+		if @cost.update(cost_params)
+  			redirect_to user_costs_path
+  		else
+  			render 'edit'
+  		end
 end
 
 def destroy

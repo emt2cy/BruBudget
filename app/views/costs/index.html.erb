@@ -1,3 +1,4 @@
+<p class='navbar-text pull-right'>
 <% if user_signed_in? %>
   Logged in as <strong><%= current_user.email %></strong>.
   <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
@@ -12,7 +13,9 @@
  <% @costs.each do |cost| %>
  	<%= cost.iteam %>
  	<%= cost.cost %>
+ 	<td><%= link_to 'Show', user_cost_path(@user, cost) %></td>
+	<td><%= link_to 'Edit', edit_user_cost_path(@user, cost) %></td>
  <% end %>
 </ul>
-<p class='navbar-text pull-right'>
+
 
